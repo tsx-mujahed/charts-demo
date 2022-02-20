@@ -8,7 +8,6 @@ export class NotAuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         let isLoggedin = localStorage.getItem('token') ? true : null;
-        console.log(isLoggedin)
         if (!isLoggedin) {
             // logged in so return true
             return true;

@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from './home.service';
+import { SocialAuthService} from 'angularx-social-login';
+import {ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit , AfterContentChecked{
 
   constructor(
     private homeservice: HomeService,
-    private router: Router
+    private router: Router,
+    private socialAuthService: SocialAuthService,
+    private cdref: ChangeDetectorRef
   ) { }
   items: any;
   sidebarItems: any;
@@ -36,9 +40,7 @@ export class HomeComponent implements OnInit {
           }
       ]}
     ];
-    this.homeservice.showSideBarEvent.subscribe(res=>{
-      this.viewSidebarButton = res;
-    })
+    
     this.sidebarItems =  [{
       label: 'Select Charts',
       items: [{
@@ -63,14 +65,26 @@ export class HomeComponent implements OnInit {
     ];
     this.getUsername();
   }
+  ngAfterContentChecked(): void {
+    this.homeservice.showSideBarEvent.subscribe(res=>{
+      this.viewSidebarButton = res;
+    });
+    this.cdref.detectChanges();
+  }
+  
 
   getUsername(){
     this.username =  window.localStorage.getItem('name')
   }
 
   logout() {
-   window.localStorage.clear();
-   this.router.navigate(['/login']);
+     this.socialAuthService.signOut().then((_res: any) =>{
+      window.localStorage.clear();
+      this.router.navigate(['/login']);
+     }, _reject =>{
+        window.localStorage.clear();
+        this.router.navigate(['/login']);
+     });   
   }
 
 }

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       // this.socialUser = user;
       // this.isLoggedin = user != null;
-      console.log(user,'some error');
+      console.log(user,'user info');
       window.localStorage.setItem('name',user.firstName)
       window.localStorage.setItem('token',user.idToken)
       this.router.navigate(['']);
