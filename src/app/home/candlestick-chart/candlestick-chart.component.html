@@ -1,0 +1,15 @@
+
+<div class="chart-container">
+    <app-chart-details></app-chart-details>
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [yaxis]="chartOptions.yaxis"
+        [title]="chartOptions.title"
+        [colors]="chartOptions.colors"
+        [plotOptions]="chartOptions.plotOptions"
+      ></apx-chart>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+.chart-details{
+    margin-left: 95px;
+    display: flex;
+    height: 80px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+.stock-name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p{
+        margin: 0;
+    }
+}
+.stock-price-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    margin-left: 15px;
+}
+.button-icons{
+    ::ng-deep .pi {
+        font-size: 1.2rem;
+    }
+    display: flex;
+    justify-self: center;
+    margin-left: 18%;
+    align-items: baseline;
+    .icons-list-con{
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .fav-icon{
+        margin-left: 10px;
+    }
+    .alert-icon{
+        margin-left: 10px;
+    }
+    .sell-icon{
+        margin-left: 10px;
+        background-color: #ff5722;
+        width: 100px;
+        height: 40px;
+    }
+    .buy-icon{
+        margin-left: 10px;
+        background-color: #4184f3;
+        width: 100px;
+        height: 40px;
+    }
+}

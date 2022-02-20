@@ -1,0 +1,56 @@
+table {
+    width: 60%;
+    font-family: Open Sans,sans-serif;
+  }
+
+.table-container{
+    display: flex;
+    padding-top: 50px;
+    flex-direction: column;
+    padding-left: 60px;    
+}
+::ng-deep .p-chip .p-chip-text {
+    line-height: 1.5;
+    margin-top: unset;
+    margin-bottom: unset;
+    font-size: 12px;
+}
+tr.mat-row, tr.mat-footer-row {
+    height: 80px;
+    cursor: pointer;
+}
+tr.mat-row:hover .the-action-container {
+    visibility: visible;
+}
+td.mat-cell{
+    border-bottom-width: 0px;
+}
+#chart {
+    max-width: 150px;
+    height: 75px;
+  }
+
+  .name-styles{    
+    width: 20% !important;
+  }
+  ::ng-deep .p-badge {
+    background: #4184f3;
+  }
+  .sell-icon{
+    ::ng-deep .p-badge {
+        background: #ff5722;
+      }
+      padding-left: 10px;
+  }
+  .the-action-container{
+      visibility: hidden;
+      .sell-icon{
+        padding-left: 10px;
+      }
+  }
+  ::ng-deep .p-badge.p-badge-lg {
+    font-size: 1rem;
+    min-width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+}

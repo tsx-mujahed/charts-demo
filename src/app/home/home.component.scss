@@ -1,0 +1,43 @@
+.header-container {
+  height: 80px;
+  box-shadow: inset 0 -1px 0 0 #f4f4f4, 0 4px 16px 0 rgb(51 51 51 / 10%);
+
+  .header-info {
+    display: flex;
+    justify-content: space-between;
+    .sub-profile-info{
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        padding-right: 40px;
+    }
+    div::last-of-type {
+        margin-top: auto;
+     }
+    }
+}
+
+.logo {
+  height: 77px;
+  padding-top: 10px;
+  padding-left: 34px;
+}
+::ng-deep .p-avatar.p-avatar-xl {
+    width: 3rem;
+    height: 3rem;
+    font-size: 21px;
+    color: #485a65;
+}
+.avatar-tech{
+    padding-right: 10px;
+}
+.sidebar-button{
+    display: flex;
+    justify-content: end;
+    margin-right: 10%;
+    margin-top: 20px;
+    ::ng-deep .p-button.p-button-icon-only {
+        width: unset;
+        padding: 0.5rem 0;
+    }
+}

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit  } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -12,6 +12,7 @@ import {
   ApexGrid,
   ApexStroke
 } from "ng-apexcharts";
+import { HomeService } from '../home.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -26,32 +27,25 @@ export type ChartOptions = {
   colors?: any;
 };
 
-// export type ChartOptions = {
-//   series: ApexAxisChartSeries;
-//   chart: ApexChart;
-//   xaxis: ApexXAxis;
-//   dataLabels: ApexDataLabels;
-//   grid: ApexGrid;
-//   stroke: ApexStroke;
-//   title: ApexTitleSubtitle;
-//   colors: any;
-// };
-
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-candlestick-chart',
+  templateUrl: './candlestick-chart.component.html',
+  styleUrls: ['./candlestick-chart.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  title = 'the-demo-project';
+export class CandlestickChartComponent implements OnInit, OnDestroy {
+
   @ViewChild("chart")
   chart: ChartComponent = new ChartComponent;
   public chartOptions: ChartOptions;
+  constructor(private homeService: HomeService) { }
 
-  constructor() {
+  ngOnInit(): void {
+    this.setGraph();
+    this.homeService.showSideBarEvent.emit(true);
   }
-  ngOnInit() {
+
+  setGraph(){
     this.chartOptions = {
       series: [
         {
@@ -326,77 +320,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       },
       colors: ["#800013"],
     };
-
-    //line-charts
-
-    // this.chartOptions = {
-    //   series: [
-    //     {
-    //       name: "Desktops",
-    //       data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-    //     }
-    //   ],
-    //   chart: {
-    //     height: 350,
-    //     type: "line",
-    //     zoom: {
-    //       enabled: false
-    //     }
-    //   },
-    //   colors: ["#800013"],
-    //   dataLabels: {
-    //     enabled: true
-    //   },
-    //   stroke: {
-    //     curve: "straight"
-    //   },
-    //   title: {
-    //     text: "Product Trends by Month",
-    //     align: "left"
-    //   },
-    //   grid: {
-    //     row: {
-    //       colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-    //       opacity: 0.5
-    //     }
-    //   },
-    //   xaxis: {
-    //     categories: [
-    //       "Jan",
-    //       "Feb",
-    //       "Mar",
-    //       "Apr",
-    //       "May",
-    //       "Jun",
-    //       "Jul",
-    //       "Aug",
-    //       "Sep"
-    //     ]
-    //   },
-    // };
-    // setTimeout(() => {
-    //   this.chart.updateOptions({
-    //     plotOptions: {candlestick: {
-    //       colors: { upward:"#7a8000" , downward: "#00807c"}
-    //     }}
-    //   });
-    // }, 1700);
   }
-  ngAfterViewInit(): void {
+  ngOnDestroy(): void {
+      this.homeService.showSideBarEvent.emit(false)
   }
-  
 
-  public generateDayWiseTimeSeries(baseval: number, count: number, yrange: { max: number; min: number; }) {
-    var i = 0;
-    var series = [];
-    while (i < count) {
-      var y =
-        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
-
-      series.push([baseval, y]);
-      baseval += 86400000;
-      i++;
-    }
-    return series;
-  }
 }
