@@ -34,7 +34,7 @@ export class LineChartComponent implements OnInit , OnDestroy{
     this.initChartData();
   }
   ngOnInit(): void {
-    this.homeService.showSideBarEvent.emit(true);
+    this.homeService.showSideBarEvent.emit(false);
   }
 
   public initChartData(): void {

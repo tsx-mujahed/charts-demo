@@ -1,6 +1,23 @@
+.tickerscroller{
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.router-container{
+    padding-top: 126px;
+    z-index: -1;
+    height: 100%;
+}
 .header-container {
   height: 80px;
   box-shadow: inset 0 -1px 0 0 #f4f4f4, 0 4px 16px 0 rgb(51 51 51 / 10%);
+
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    margin-top: 46px;
+    z-index: 10;
 
   .header-info {
     display: flex;

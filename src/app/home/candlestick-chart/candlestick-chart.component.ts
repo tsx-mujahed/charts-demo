@@ -42,7 +42,7 @@ export class CandlestickChartComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setGraph();
-    this.homeService.showSideBarEvent.emit(true);
+    this.homeService.showSideBarEvent.emit(false);
   }
 
   setGraph(){

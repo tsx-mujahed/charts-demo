@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from './home.service';
 import { SocialAuthService} from 'angularx-social-login';
@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit , AfterContentChecked{
   visibleSidebar2 = false;
   viewSidebarButton = false;
   username: any;
+  
+  @ViewChild("tickertape") el: ElementRef | any;
 
   ngOnInit(): void {
     this.items = [
@@ -71,6 +73,42 @@ export class HomeComponent implements OnInit , AfterContentChecked{
     });
     this.cdref.detectChanges();
   }
+
+  ngAfterViewInit() {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
+    s.text = `{
+      "symbols": [
+        {
+          "proName": "FOREXCOM:SPXUSD",
+          "title": "S&P 500"
+        },
+        {
+          "proName": "FOREXCOM:NSXUSD",
+          "title": "US 100"
+        },
+        {
+          "proName": "FX_IDC:EURUSD",
+          "title": "EUR/USD"
+        },
+        {
+          "proName": "BITSTAMP:BTCUSD",
+          "title": "Bitcoin"
+        },
+        {
+          "proName": "BITSTAMP:ETHUSD",
+          "title": "Ethereum"
+        }
+      ],
+      "showSymbolLogo": true,
+      "colorTheme": "dark",
+      "isTransparent": false,
+      "displayMode": "adaptive",
+      "locale": "en"
+    }`,
+    this.el.nativeElement.appendChild(s);
+   }
   
 
   getUsername(){

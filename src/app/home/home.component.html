@@ -1,3 +1,4 @@
+<div #tickertape class="tickerscroller"></div>
 <nav class="header-container">
   <div class="header-info">
     <img src="/assets/Technostix-logo.png" class="logo">
@@ -20,5 +21,7 @@
     <p-button type="button" (click)="visibleSidebar2 = true" >More Charts</p-button>
 </div>
 
-<router-outlet></router-outlet>
+<div class="router-container">
+  <router-outlet></router-outlet>
+</div>
 

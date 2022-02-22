@@ -9,6 +9,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MiniLineChartsComponent } from './mini-line-charts/mini-line-charts.component';
 import { ChartDetailsComponent } from './chart-details/chart-details.component';
 import { SharedModule } from '../shared/shared.module';
+import { StockCardsComponent } from './stock-cards/stock-cards.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent,
     MiniLineChartsComponent,
     ChartDetailsComponent,
+    StockCardsComponent,
   ],
   imports: [
     CommonModule,
