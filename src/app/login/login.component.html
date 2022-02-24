@@ -3,11 +3,32 @@
     <mat-card-subtitle>The Demo Project</mat-card-subtitle>
     <mat-card-title>Login</mat-card-title>
 
+    <div class="form-container">
+      <span class="p-float-label">
+        <input id="float-input" type="text" class="p-inputtext-lg" pInputText [(ngModel)]="value2"> 
+        <label for="float-input">Username/Email</label>
+      </span>
+      <span class="p-float-label" style="margin-top: 27px;">
+        <input id="float-input" type="password" class="p-inputtext-lg" pInputText [(ngModel)]="value1"> 
+        <label for="float-input">Password</label>
+      </span>
+      <p-button label="Submit" class="submit-btn" (click)="loginWithSubmit()"></p-button>
+    </div>
+
     <mat-card-actions>
+      <p-divider>
+        <b>OR</b>
+    </p-divider>
       <button mat-stroked-button type="button" (click)="loginWithGoogle()" class="btn btn-danger">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="g-icon">
         Login with Google
       </button>
+      <button mat-stroked-button type="button" (click)="loginWithMicrosoft()" class="btn btn-danger">
+        <img height="44px" src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" class="g-icon">
+        Login with Microsoft
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>
+
+

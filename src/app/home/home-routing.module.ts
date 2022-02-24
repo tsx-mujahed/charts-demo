@@ -4,6 +4,7 @@ import { LineChartComponent  } from './line-chart/line-chart.component';
 import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart.component';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PopoutchartComponent } from './popoutchart/popoutchart.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashaboard' }
         ]
     },
+    { path: 'popout-charts', component: PopoutchartComponent},
    
     { path: '', redirectTo: 'charts' }
     

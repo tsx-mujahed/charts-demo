@@ -10,6 +10,7 @@ import { MiniLineChartsComponent } from './mini-line-charts/mini-line-charts.com
 import { ChartDetailsComponent } from './chart-details/chart-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { StockCardsComponent } from './stock-cards/stock-cards.component';
+import { PopoutchartComponent } from './popoutchart/popoutchart.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { StockCardsComponent } from './stock-cards/stock-cards.component';
     MiniLineChartsComponent,
     ChartDetailsComponent,
     StockCardsComponent,
+    PopoutchartComponent,
   ],
   imports: [
     CommonModule,

@@ -14,14 +14,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['name', 'daychart', 'lastprice', 'change', 'volume', 'action', 'fav'];
   dataSource: any;
+  dataSource2: any;
   ELEMENT_DATA: any;
-  loadingDashbaord = false;
+  ELEMENT_DATA2: any;
+  loadingDashbaord : boolean = true;
 
   ngOnInit(): void {
     this.setTableInfo();
     setTimeout(()=>{
       this.loadingDashbaord = false;
-    },100)
+    },2500)
   }
 
   ngAfterViewInit() {
@@ -167,12 +169,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
   setTableInfo(){
     this.ELEMENT_DATA = [
-      { name: 'AMBUJACEM EQ', daychart: 'list', lastprice: '₹336.35', change: '21.45 (5.96%)', volume: '11.902M', label: 'NSE',},
+      { name: 'MRF', daychart: 'list', lastprice: '₹336.35', change: '21.45 (5.96%)', volume: '11.902M', label: 'BSE',},
       { name: 'DBL EQ', daychart: 'Helium', lastprice: '₹25.35', change: '10.5 (10.1%)', volume: '801.34K', label: 'BSE', },
       { name: 'GLAND EQ', daychart: 'Lithium', lastprice: '₹77.35', change: '1.8 (7.0%)' , volume: '389.70K', label: 'NSE',},
       { name: 'NASDAQ', daychart: 'Beryllium', lastprice: '₹993.35', change: '2.75 (6.0%)', volume: '950.28K', label: 'BSE' ,}
     ];
     this.dataSource = this.ELEMENT_DATA;
+
+    this.ELEMENT_DATA2 = [
+      { name: 'ADANI', daychart: 'list', lastprice: '₹336.35', change: '-21.45 (5.96%)', volume: '11.902M', label: 'BSE',},
+      { name: 'ZOMATO', daychart: 'Helium', lastprice: '₹25.35', change: '-10.5 (10.1%)', volume: '801.34K', label: 'BSE', },
+      { name: 'IRFC', daychart: 'Lithium', lastprice: '₹77.35', change: '-1.8 (7.0%)' , volume: '389.70K', label: 'NSE',},
+      { name: 'NASDAQ', daychart: 'Beryllium', lastprice: '₹993.35', change: '-2.75 (6.0%)', volume: '950.28K', label: 'BSE' ,}
+    ];
+    this.dataSource2 = this.ELEMENT_DATA2;
   }
   goToCharts(){
     this.router.navigate(['/charts/candlestick-charts']);

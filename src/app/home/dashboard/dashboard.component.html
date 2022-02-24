@@ -1,5 +1,8 @@
 
-<div class="dashboard-container" *ngIf="!loadingDashbaord">
+<div *ngIf="loadingDashbaord" style="display: flex; justify-content: center;align-items: center;height: 101%;">
+  <app-spinner ></app-spinner>
+</div>
+<div class="dashboard-container">
   <div class="left-panel">
     <div class="cards-container">
       <app-stock-cards></app-stock-cards>
@@ -73,7 +76,7 @@
 
     <div class="table-container">
       <h2>Top Losers</h2>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
   
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
@@ -92,7 +95,7 @@
             <th mat-header-cell *matHeaderCellDef> Day Chart </th>
             <td mat-cell *matCellDef="let element"> 
                 <!-- {{element.daychart}} -->
-                <app-mini-line-charts></app-mini-line-charts>
+                <app-mini-line-charts [chartType]="2"></app-mini-line-charts>
                 
             </td>
           </ng-container>
@@ -106,7 +109,7 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="change">
             <th mat-header-cell *matHeaderCellDef> Change </th>
-            <td mat-cell *matCellDef="let element" style="color: #0bd2a0"> {{element.change}} </td>
+            <td mat-cell *matCellDef="let element" style="color: #f44336"> {{element.change}} </td>
           </ng-container>
       
           <ng-container matColumnDef="volume">
@@ -137,11 +140,6 @@
   <div class="right-panel">
     <div #card1></div>
   </div>
-</div>
-
-
-<div *ngIf="loadingDashbaord" style="display: flex; justify-content: center;align-items: center;height: 80%;">
-    <app-spinner ></app-spinner>
 </div>
 
 

@@ -50,7 +50,7 @@
 }
 .sidebar-button{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin-right: 10%;
     margin-top: 20px;
     ::ng-deep .p-button.p-button-icon-only {

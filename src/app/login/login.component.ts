@@ -4,6 +4,7 @@ import {
   SocialAuthService,
   GoogleLoginProvider,
   SocialUser,
+  MicrosoftLoginProvider,
 } from 'angularx-social-login';
 
 @Component({
@@ -18,6 +19,9 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
+  value2: string;
+  value1: string;
+
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
       // this.socialUser = user;
@@ -30,6 +34,18 @@ export class LoginComponent implements OnInit {
   }
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+  loginWithMicrosoft(): void {
+    this.socialAuthService.signIn(MicrosoftLoginProvider.PROVIDER_ID);
+  }
+  loginWithSubmit(){
+    let user = {
+      firstName: 'admin',
+      idToken: 'abc-123-token'
+    }
+    window.localStorage.setItem('name',user.firstName);
+    window.localStorage.setItem('token',user.idToken);
+    this.router.navigate(['']);
   }
   logOut(): void {
     this.socialAuthService.signOut();

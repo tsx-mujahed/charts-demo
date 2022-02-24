@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -42,27 +42,43 @@ export class MiniLineChartsComponent implements OnInit {
   public twoChartOptions: ChartOptions;
   public treeChartOptions: ChartOptions;
   public fourChartOptions: ChartOptions;
+  selectedColor: string = "#0bd2a0";
+  selectedSeriesData: any = {
+    name: "Desktops",
+    data: [
+      Math.floor(Math.random() * 100) + 1, 
+      Math.floor(Math.random() * 100) + 1,
+      20,80,20,40,50,10,
+      35, 
+      Math.floor(Math.random() * 100) + 1,
+      70, 50, 99, 91,130]
+  };
+  @Input() chartType: number = 1;
 
   @ViewChild("chart")
   chart: ChartComponent = new ChartComponent;
 
   ngOnInit(): void {
+    this.selectedColor = this.chartType == 1 ? "#0bd2a0" : '#f44336';
+    if(this.chartType ==2){
+      this.selectedSeriesData = {
+        name: "Desktops",
+        data: [
+          Math.floor(Math.random() * 100) + 1, 
+          Math.floor(Math.random() * 100) + 1,
+          20,80,20,40,50,10,
+          35, 
+          Math.floor(Math.random() * 100) + 1,
+          70,51 , 45, 39,30]
+      };
+    } 
     this.setChartInfo();
   }
 
   setChartInfo(){
     this.chartOptions = {
       series: [
-        {
-          name: "Desktops",
-          data: [
-            Math.floor(Math.random() * 100) + 1, 
-            Math.floor(Math.random() * 100) + 1,
-            20,80,20,40,50,10,
-            35, 
-            Math.floor(Math.random() * 100) + 1,
-            70, 50, 99, 91,130]
-        }
+        this.selectedSeriesData
       ],
       chart: {
         height: 80,
@@ -72,7 +88,7 @@ export class MiniLineChartsComponent implements OnInit {
         },
         toolbar:  {show: false},
       },
-      colors: ["#0bd2a0"],
+      colors: [this.selectedColor],
       dataLabels: {
         enabled: false
       },

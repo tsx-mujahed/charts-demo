@@ -1,17 +1,54 @@
 .login-card {
-  max-width: 400px;
-  width: 390px;
-  height: 200px;
+  max-width: 500px;
+  width: 500px;
+  height: 415px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
     .g-icon{
       padding: 10px;
     }
+    border-radius: 10px;
+    padding-left: 37px;
+    padding-right: 37px;
+    padding-top: 30px;
+
 }
 .login-container{
   display: flex;
-  height: 60%;
+  height: 100%;
   justify-content: center;
   align-items: center;
+  background: url('/assets/background-login.jpg');
+  background-size: cover;
+}
+.form-container{
+  height: 210px;
+  display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.p-inputtext.p-inputtext-lg{
+  width: 70%;
+}
+
+.mat-card-title {
+  margin-bottom: 0px;
+}
+
+::ng-deep .p-divider-horizontal.p-divider-left {
+  justify-content: center !important;
+}
+.mat-card>.mat-card-actions:last-child {
+  margin-bottom: 0px;
+  padding-bottom: inherit;
+}
+.mat-card-actions{
+  padding-top: 0;
+}
+.submit-btn{
+  margin-top: 15px;
 }

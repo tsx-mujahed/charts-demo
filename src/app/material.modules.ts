@@ -10,8 +10,9 @@ import {MenuModule} from 'primeng/menu';
 import {SidebarModule} from 'primeng/sidebar';
 import { ChipModule } from 'primeng/chip';
 import {BadgeModule} from 'primeng/badge';
+import {InputTextModule} from 'primeng/inputtext';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
+import {DividerModule} from 'primeng/divider';
 
 @NgModule({
   exports: [
@@ -26,6 +27,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     SidebarModule,
     ChipModule,
     BadgeModule,
+    InputTextModule,
+    DividerModule,
     MatTooltipModule
   ]
 })

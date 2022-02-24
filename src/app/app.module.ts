@@ -12,10 +12,12 @@ import { MaterialModule } from './material.modules';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
+  MicrosoftLoginProvider,
 } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { NotAuthGuard } from './auth-guards/not-auth.guards';
 import { SharedModule } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { SharedModule } from 'primeng/api';
     BrowserAnimationsModule,
     MaterialModule,
     SocialLoginModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [ 
     AuthGuard,NotAuthGuard,
@@ -43,9 +46,13 @@ import { SharedModule } from 'primeng/api';
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider('55735797224-ocomdnb3letgqu8dq0lncgnsfgchjvg4.apps.googleusercontent.com'),
           },
+          {
+            id: MicrosoftLoginProvider.PROVIDER_ID,
+            provider: new MicrosoftLoginProvider('8159d9c8-4cf7-411c-b7e6-6730fd6438a2'),
+          },
         ],
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
   bootstrap: [AppComponent]
 })
