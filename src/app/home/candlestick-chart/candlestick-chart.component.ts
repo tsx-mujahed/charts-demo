@@ -48,7 +48,10 @@ export class CandlestickChartComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   ngAfterViewInit() {
-    
+    setTimeout(()=>{
+      this.setGraph();
+    },1)
+ 
     // let s = document.createElement("script");
     // s.type = "text/javascript";
     // s.src = "https://s3.tradingview.com/tv.js";
@@ -88,6 +91,22 @@ export class CandlestickChartComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   setGraph(){
+    new TradingView.widget(
+      {
+      "width": 1080,
+      "height": 475,
+      "symbol": "BSE:MRF",
+      "interval": "D",
+      "timezone": "Etc/UTC",
+      "theme": "light",
+      "style": "1",
+      "locale": "in",
+      "toolbar_bg": "#f1f3f6",
+      "hide_top_toolbar": true,
+      "enable_publishing": false,
+      "allow_symbol_change": false,
+      "container_id": "technical-analysis"
+    });
 
   }
   ngOnDestroy(): void {

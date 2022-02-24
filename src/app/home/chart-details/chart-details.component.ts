@@ -14,6 +14,7 @@ export class ChartDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
   goToLink(){
-    window.open(location.origin + '/popout-charts', "_blank");
+    //window.open(location.origin + '/popout-charts', "_blank");
+    this.router.navigate(['/popout-charts'])
   }
 }

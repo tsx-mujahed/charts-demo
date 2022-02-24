@@ -13,8 +13,14 @@ export class PopoutchartComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {   
-    console.log('in view init') 
+    console.log('in view init');
+    setTimeout(()=>{
+      this.setChart();
+    },1);  
     
+  }
+
+  setChart(){
     new TradingView.widget(
       {
       "autosize": true,
