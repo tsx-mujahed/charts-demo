@@ -2,6 +2,7 @@
     position: fixed;
     width: 100%;
     z-index: 100;
+    pointer-events:none;
 }
 
 .router-container{
@@ -57,4 +58,12 @@
         width: unset;
         padding: 0.5rem 0;
     }
+}
+.logo-text{
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0 0 16px;
+    margin-left: 22px;
+    margin-top: 16px;
+    cursor: pointer;
 }

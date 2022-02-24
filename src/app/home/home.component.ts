@@ -124,5 +124,8 @@ export class HomeComponent implements OnInit , AfterContentChecked{
         this.router.navigate(['/login']);
      });   
   }
+  goToHome(){
+    this.router.navigate(['']);
+  }
 
 }

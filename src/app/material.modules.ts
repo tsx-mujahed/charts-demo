@@ -13,6 +13,7 @@ import {BadgeModule} from 'primeng/badge';
 import {InputTextModule} from 'primeng/inputtext';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {DividerModule} from 'primeng/divider';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   exports: [
@@ -29,7 +30,8 @@ import {DividerModule} from 'primeng/divider';
     BadgeModule,
     InputTextModule,
     DividerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {}

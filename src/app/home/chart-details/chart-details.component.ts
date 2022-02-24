@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chart-details',
@@ -7,12 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
-  goToLink(url: string){
-    window.open(url, "_blank");
-}
-
+  goToLink(){
+    window.open(location.origin + '/popout-charts', "_blank");
+  }
 }

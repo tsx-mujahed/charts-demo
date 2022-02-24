@@ -6,6 +6,7 @@ table {
   .cards-container{
     padding-left: 40px;
     margin-top: 15px;
+    pointer-events:none
   }
 
 .dashboard-container{
@@ -23,6 +24,7 @@ table {
       width: 27%;
       height: 100%;
       padding-top: 25px;
+      pointer-events:none;
     }
 }
 .left-panel::-webkit-scrollbar { 

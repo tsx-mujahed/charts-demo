@@ -18,7 +18,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'dashaboard' }
         ]
     },
-    { path: 'popout-charts', component: PopoutchartComponent},
+    //{ path: 'popout-charts', component: PopoutchartComponent},
    
     { path: '', redirectTo: 'charts' }
     

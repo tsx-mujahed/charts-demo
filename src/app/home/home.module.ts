@@ -21,7 +21,7 @@ import { PopoutchartComponent } from './popoutchart/popoutchart.component';
     MiniLineChartsComponent,
     ChartDetailsComponent,
     StockCardsComponent,
-    PopoutchartComponent,
+    PopoutchartComponent
   ],
   imports: [
     CommonModule,
