@@ -16,14 +16,18 @@ import {
 } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { NotAuthGuard } from './auth-guards/not-auth.guards';
-import { SharedModule } from 'primeng/api';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AlertService } from './shared/snackbar/alert.service';
+import { MyHttpInterceptor } from './shared/http.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +37,10 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     SocialLoginModule,
     SharedModule,
-    FormsModule
+    FormsModule, ReactiveFormsModule
   ],
   providers: [ 
-    AuthGuard,NotAuthGuard,
+    AuthGuard,NotAuthGuard,AlertService,MyHttpInterceptor,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

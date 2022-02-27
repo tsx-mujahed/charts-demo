@@ -5,11 +5,11 @@
 
     <div class="form-container">
       <span class="p-float-label">
-        <input id="float-input" type="text" class="p-inputtext-lg" pInputText [(ngModel)]="value2"> 
+        <input id="float-input" type="text" class="p-inputtext-lg" pInputText [(ngModel)]="value1" required> 
         <label for="float-input">Username/Email</label>
       </span>
       <span class="p-float-label" style="margin-top: 27px;">
-        <input id="float-input" type="password" class="p-inputtext-lg" pInputText [(ngModel)]="value1"> 
+        <input id="float-input" type="password" class="p-inputtext-lg" pInputText [(ngModel)]="value2" required> 
         <label for="float-input">Password</label>
       </span>
       <p-button label="Submit" class="submit-btn" (click)="loginWithSubmit()"></p-button>
@@ -27,6 +27,14 @@
         <img height="44px" src="https://cdn.worldvectorlogo.com/logos/microsoft-5.svg" class="g-icon">
         Login with Microsoft
       </button>
+      <div class="sign-up-line">
+        <div>
+          <h3 class="main-sign-line">Not a user?</h3>
+        </div>
+        <div class="signup-button" (click)="signUp()">
+          <h3 class="heading">Sign Up!</h3>
+        </div>        
+      </div>      
     </mat-card-actions>
   </mat-card>
 </div>

@@ -1,7 +1,7 @@
 .login-card {
   max-width: 500px;
   width: 500px;
-  height: 415px;
+  height: 445px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -27,7 +27,7 @@
   display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    padding-top: 20px;
+    padding-top: 10px;
     margin-top: 20px;
 }
 
@@ -51,4 +51,22 @@
 }
 .submit-btn{
   margin-top: 15px;
+}
+.sign-up-line{
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  padding-right: 5px;
+  .signup-button{
+    padding-left: 7px;
+    cursor: pointer;
+    color: #3367d6;
+    .heading{
+      font-weight: 500 !important;
+    }
+  }
+}
+::ng-deep .p-avatar.p-avatar-xl {
+  color: rgb(156, 39, 176);
+    background-color: rgba(156, 39, 176, 0.1);
 }

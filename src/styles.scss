@@ -17,3 +17,24 @@ body {
   width: 100%;
   height: 100%;
 }
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white !important;
+}
+
+.cdk-overlay-pane.my-dialog {
+  position: relative!important;
+}
+.cdk-overlay-dark-backdrop {
+  background: rgba(0,0,0,.32);
+}
+.my-backdrop{
+  background: rgba(0,0,0,.32);
+}
+.close-my-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  min-width: auto;
+  cursor: pointer;
+}
