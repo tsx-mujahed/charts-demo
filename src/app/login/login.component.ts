@@ -10,6 +10,7 @@ import {
 import { PinOtpComponent } from '../shared/pin-otp/pin-otp.component';
 import { AlertService } from '../shared/snackbar/alert.service';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -22,19 +23,21 @@ export class LoginComponent implements OnInit {
     private socialAuthService: SocialAuthService,
     private router: Router,
     public dialog: MatDialog,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private loginService: LoginService
   ) { }
 
   value2: string;
   value1: string;
+  loginLoading: boolean = false;
 
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
       // this.socialUser = user;
       // this.isLoggedin = user != null;
-      console.log(user,'user info');
-      window.localStorage.setItem('name',user.firstName)
-      window.localStorage.setItem('token',user.idToken)
+      console.log(user, 'user info');
+      window.localStorage.setItem('name', user.firstName)
+      window.localStorage.setItem('token', user.idToken)
       this.router.navigate(['']);
     });
   }
@@ -44,15 +47,29 @@ export class LoginComponent implements OnInit {
   loginWithMicrosoft(): void {
     this.socialAuthService.signIn(MicrosoftLoginProvider.PROVIDER_ID);
   }
-  loginWithSubmit(){
-    if(!this.value1 || !this.value2){
+  loginWithSubmit() {
+    if (!this.value1 || !this.value2) {
       this.alertService.emitEvent('Enter Username & Password');
       return;
     }
+    this.loginLoading = true;
     let user = {
       firstName: this.value1,
       idToken: this.value2
     }
+
+    this.loginService.postlogin(user).subscribe(
+      (data: any) => {
+        console.log(data)
+        this.openOTPComp();
+      },
+      error => {
+        this.loginLoading = false;
+        console.log(error, 'IS ERROR')
+      }
+    );
+  }
+  openOTPComp() {
     // window.localStorage.setItem('name',user.firstName);
     // window.localStorage.setItem('token',user.idToken);
     this.alertService.emitEvent('Login Successful');
@@ -71,8 +88,8 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signOut();
     window.localStorage.clear();
   }
-  signUp(){
-    const dialogRef = this.dialog.open(SignUpComponent,{width: '500px',height: '450px'});
+  signUp() {
+    const dialogRef = this.dialog.open(SignUpComponent, { width: '500px', height: '450px' });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -80,3 +97,4 @@ export class LoginComponent implements OnInit {
   }
 
 }
+

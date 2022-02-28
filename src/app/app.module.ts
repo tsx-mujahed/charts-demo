@@ -21,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AlertService } from './shared/snackbar/alert.service';
 import { MyHttpInterceptor } from './shared/http.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { MyHttpInterceptor } from './shared/http.interceptor';
     MaterialModule,
     SocialLoginModule,
     SharedModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule, HttpClientModule
   ],
   providers: [ 
     AuthGuard,NotAuthGuard,AlertService,MyHttpInterceptor,
