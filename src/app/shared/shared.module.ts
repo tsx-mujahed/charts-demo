@@ -4,14 +4,22 @@ import { MaterialModule } from '../material.modules';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { AlertService } from './snackbar/alert.service';
-import { PinOtpComponent } from './pin-otp/pin-otp.component';
+import { FormatTimePipe, PinOtpComponent } from './pin-otp/pin-otp.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GmailSignupOtpComponent } from './gmail-signup-otp/gmail-signup-otp.component';
+import { AppLoaderComponent } from './app-loader/app-loader.component';
+import { LoginOtpVerifyComponent } from './login-otp-verify/login-otp-verify.component';
+import { InappSignupOtpComponent } from './inapp-signup-otp/inapp-signup-otp.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     SnackbarComponent,
-    PinOtpComponent
+    PinOtpComponent,
+    GmailSignupOtpComponent,
+    AppLoaderComponent,
+    LoginOtpVerifyComponent,
+    InappSignupOtpComponent,FormatTimePipe
   ],
   imports: [
     CommonModule,
@@ -19,6 +27,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [AlertService],
-  exports: [SpinnerComponent,SnackbarComponent,PinOtpComponent]
+  exports: [SpinnerComponent,SnackbarComponent,PinOtpComponent,
+    GmailSignupOtpComponent,
+    AppLoaderComponent,FormatTimePipe
+  ]
 })
 export class SharedModule { }

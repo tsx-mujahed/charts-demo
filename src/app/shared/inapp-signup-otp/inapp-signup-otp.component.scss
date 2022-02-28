@@ -12,6 +12,24 @@
 .resend-details{
     cursor: pointer;
 }
+.p-tag.p-tag-success {
+    background-color: #22C55E;
+    color: #ffffff;
+}
+.email-info{
+    display: flex;
+}
+.continue-btn{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    &:disabled{
+        background-color: #c1d8ff;
+      }
+}
+.tag-success{
+    padding-left: 4px;
+}
 .submitotp-btn{
     display: flex;
     justify-content: center;

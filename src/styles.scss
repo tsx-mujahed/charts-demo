@@ -38,3 +38,15 @@ body {
   min-width: auto;
   cursor: pointer;
 }
+::ng-deep .mat-raised-button {
+  &:disabled{
+    background-color: #c1d8ff;
+  }
+  
+}
+button {
+  &:disabled{
+    background-color: #c1d8ff;
+  }
+  
+}

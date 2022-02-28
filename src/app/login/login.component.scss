@@ -32,7 +32,7 @@
 }
 
 .p-inputtext.p-inputtext-lg{
-  width: 70%;
+  width: 99%;
 }
 
 .mat-card-title {
@@ -51,6 +51,12 @@
 }
 .submit-btn{
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  &:disabled{
+      background-color: #c1d8ff;
+    }
 }
 .sign-up-line{
   display: flex;
@@ -69,4 +75,14 @@
 ::ng-deep .p-avatar.p-avatar-xl {
   color: rgb(156, 39, 176);
     background-color: rgba(156, 39, 176, 0.1);
+}
+.g-button{
+  width: 97%;
+  display: flex;
+  justify-content: center;
+}
+.test{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

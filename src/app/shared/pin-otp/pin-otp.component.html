@@ -1,20 +1,21 @@
-<div class="close-my-button" (click)="onCloseClick()">
-    <i class="pi pi-times"></i>
-</div>
 <!-- <h1 mat-dialog-title>Login</h1> -->
 <div class="main-pin-container">
     <div class="user-info">
-        <p-avatar label="{{data.username[0] | titlecase}}" icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle" class="avatar-tech"></p-avatar>
-        <h2 style="margin-top: 10px;">Hello {{data.username | titlecase}} </h2>
+        <p-avatar label="{{data.name[0] | titlecase}}" icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle" class="avatar-tech"></p-avatar>
+        <h2 style="margin-top: 10px;">{{data.name | titlecase}} </h2>
     </div>
     <div class="pin-input-box">
-        <h3>Please enter the OTP sent to your phone</h3>
+        <h3>Please enter the OTP sent to registered Mobile or Email</h3>
         <div class="p-inputgroup" style="margin-bottom: 15px;">
             <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
             <input type="password" pInputText placeholder="OTP"  [(ngModel)]="valueOTP">         
         </div>
-        <p-button label="Continue" (click)="submitOTP()"></p-button>
+        <button mat-raised-button color="primary" class="submitotp-btn" (click)="submitOTP()" [disabled]="!valueOTP">
+            <app-app-loader [loading]="loadingSubmitOTP">Continue</app-app-loader>
+        </button>
     </div>
-    <div class="resend-details" (click)="onResendOTP()"><h3 style="font-size: inherit; margin-top: 15px;">Resend OTP</h3></div>
+    <div *ngIf="!displayResendButton"> <h3> {{counter | formatTime}} </h3> </div>
+    <div *ngIf="displayResendButton" class="resend-details" (click)="onResendOTP()"><h3 style="color: mediumblue;
+    font-size: inherit; margin-top: 15px;text-decoration: underline;">Resend OTP</h3></div>
     <div></div>
 </div>

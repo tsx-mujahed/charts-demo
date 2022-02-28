@@ -12,13 +12,20 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
+  constructor(){
+    console.log('IN INTERCPTOR')
+  }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // add custom header
     const customReq = request.clone({
-      headers: request.headers.set('app-author', 'test-headers')
+      setHeaders: {
+        'Auth': 'Bearer' + 'dsd',
+        'Access-Control-Allow-Origin': '*'
+      }
+      //headers: request.headers.set('app-author', 'test-headers')
     });
 
-    console.log('processing request', customReq);
+    //console.log('processing request', customReq);
 
 
     return next.handle(customReq);

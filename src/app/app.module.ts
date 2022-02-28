@@ -21,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AlertService } from './shared/snackbar/alert.service';
 import { MyHttpInterceptor } from './shared/http.interceptor';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, ReactiveFormsModule, HttpClientModule
   ],
   providers: [ 
-    AuthGuard,NotAuthGuard,AlertService,MyHttpInterceptor,
+    AuthGuard,NotAuthGuard,AlertService,CoreModule,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -58,6 +59,11 @@ import { HttpClientModule } from '@angular/common/http';
         ],
       } as SocialAuthServiceConfig,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true
+     }
   ],
   bootstrap: [AppComponent]
 })

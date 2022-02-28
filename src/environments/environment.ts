@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://test123.free.beeceptor.com'
+  apiURL: 'http://localhost:3000/api/1.0'
 };
 
 /*

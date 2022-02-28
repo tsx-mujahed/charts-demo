@@ -16,6 +16,7 @@ import {DividerModule} from 'primeng/divider';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   exports: [
@@ -35,7 +36,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatTooltipModule,
     MatDialogModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    TagModule
   ]
 })
 export class MaterialModule {}

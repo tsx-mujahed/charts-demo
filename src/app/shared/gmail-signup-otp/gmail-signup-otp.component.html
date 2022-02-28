@@ -1,0 +1,34 @@
+<div class="main-pin-container">
+    <div class="user-info">
+        <p-avatar label="{{username[0] | titlecase}}" icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle" class="avatar-tech"></p-avatar>
+        <h2 style="margin-top: 10px;">{{username | titlecase}} </h2>
+    </div>
+    <div class="pin-input-box">
+        <div class="email-info">
+            <h3>Email </h3>
+            <p-tag styleClass="mr-2" severity="success" value="Verified" [rounded]="true" class="tag-success"></p-tag>
+        </div>
+        <div class="phone-info-box">
+            <h3>Please enter Mobile Number</h3>
+            <div class="p-inputgroup" style="margin-bottom: 15px;">
+                <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
+                <input type="text" pInputText placeholder="Mobile" [disabled]="disabledPhoneInput" [(ngModel)]="mobile_number">         
+            </div>
+            <button mat-raised-button color="primary" [disabled]="!mobile_number || loadingSendUserInfo" class="continue-btn" *ngIf="!disabledPhoneInput" (click)="submitUserInfo()">
+                <app-app-loader [loading]="loadingSendUserInfo">Continue</app-app-loader>
+            </button>
+        </div>
+        <div class="otp-info-box" *ngIf="disabledPhoneInput && displayOtpInfo">
+            <h3>Please enter the OTP sent to your phone</h3>
+            <div class="p-inputgroup" style="margin-bottom: 15px;">
+                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                <input type="password" pInputText placeholder="OTP"  [(ngModel)]="mobile_otp">         
+            </div>
+            <button mat-raised-button color="primary" class="submitotp-btn" (click)="submitOTP()" [disabled]="!mobile_otp">
+                <app-app-loader [loading]="loadingSendOtp">Submit OTP</app-app-loader>
+            </button>
+        </div>
+    </div>
+    <!-- <div class="resend-details" (click)="onResendOTP()"><h3 style="font-size: inherit; margin-top: 15px;">Resend OTP</h3></div> -->
+    <div></div>
+</div>
