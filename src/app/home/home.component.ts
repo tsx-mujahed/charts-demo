@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit , AfterContentChecked{
   
 
   getUsername(){
-    this.username =  window.localStorage.getItem('name')
+    this.username =  window.localStorage.getItem('username')
   }
 
   logout() {

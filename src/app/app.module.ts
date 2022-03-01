@@ -23,6 +23,7 @@ import { AlertService } from './shared/snackbar/alert.service';
 import { MyHttpInterceptor } from './shared/http.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { CoreModule } from './core/core.module';
     MaterialModule,
     SocialLoginModule,
     SharedModule,
-    FormsModule, ReactiveFormsModule, HttpClientModule
+    FormsModule, ReactiveFormsModule, HttpClientModule,NgxCaptchaModule
   ],
   providers: [ 
     AuthGuard,NotAuthGuard,AlertService,CoreModule,

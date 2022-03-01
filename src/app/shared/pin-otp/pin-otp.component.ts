@@ -6,6 +6,7 @@ import { HttpchannelService } from 'src/app/core/services/httpchannel.service';
 import { AlertService } from '../snackbar/alert.service';
 import { timer, Subscription } from 'rxjs';
 import { Pipe, PipeTransform } from '@angular/core';
+import { LoginService } from 'src/app/login/login.service';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class PinOtpComponent implements OnInit {
   loadingSubmitOTP = false;
 
   countDown: Subscription;
-  counter = 10;
+  counter = 120;
   tick = 1000;
   displayResendButton = false;
 
@@ -27,6 +28,7 @@ export class PinOtpComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private httpchannelService: HttpchannelService,private authService: AuthService,
     private alertService: AlertService,private router: Router,
+    private loginService: LoginService,
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +60,8 @@ export class PinOtpComponent implements OnInit {
     this.httpchannelService.submitOTP( res_data, email).subscribe(
       (data: any) => {
         this.loadingSubmitOTP = false;
-        this.authService.saveJWT('xyz-12');
+        this.authService.saveSignUpInfo(this.data.name,email,this.data.signin_via); // save logged in info
+        this.authService.saveJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c');
         this.router.navigate(['']);
         this.dialogRef.close();
       },
@@ -69,7 +72,25 @@ export class PinOtpComponent implements OnInit {
     );
   }
   onResendOTP(){
-    console.log('resend otp')
+    console.log('resend otp');
+    let user: any = {
+      email: this.data.email,
+      signin_via: this.data.signin_via
+    }
+     if(this.data?.password) { user['password'] = this.data.password }
+
+    this.loginService.login(user).subscribe(
+      (res: any) => {
+        this.alertService.emitEvent('OTP sent succesfully')
+        // this.loadingInappLogin = false;
+        //this.openOTPComp(res.user_name,res.email,'INAPP',this.passwordFormControl.value);
+      },
+      error => {
+        // this.loadingInappLogin = false;
+        // this.alertService.emitEvent(error.error.errors[0].msg);
+        this.alertService.emitEvent(error.error.errors[0].msg)
+      }
+    );
   }
 
 }

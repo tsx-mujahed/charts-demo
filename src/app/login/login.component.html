@@ -3,7 +3,7 @@
     <mat-card-subtitle>The Demo Project</mat-card-subtitle>
     <mat-card-title>Login</mat-card-title>
 
-    <div class="form-container">
+    <!-- <div class="form-container">
       <span class="p-float-label">
         <input id="float-input" type="text" class="p-inputtext-lg" pInputText [(ngModel)]="value1" required> 
         <label for="float-input">Email</label>
@@ -12,11 +12,46 @@
         <input id="float-input" type="password" class="p-inputtext-lg" pInputText [(ngModel)]="value2" required> 
         <label for="float-input">Password</label>
       </span>
-      <!-- <p-button label="Submit" class="submit-btn" (click)="loginWithSubmit()"></p-button> -->
+      
       <button mat-raised-button color="primary" class="submit-btn" (click)="loginWithSubmit()" [disabled]="!value1 || !value2 || loadingInappLogin">
         <app-app-loader [loading]="loadingInappLogin">Submit</app-app-loader>
      </button>
-    </div>
+    </div> -->
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+               placeholder="Ex. john@example.com">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [formControl]="passwordFormControl">
+          <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+      </mat-form-field>
+      <form [formGroup]="aFormGroup">
+          <ngx-recaptcha2 #captchaElem
+          [siteKey]="siteKey"
+          [type]="type"
+          formControlName="recaptcha">
+          </ngx-recaptcha2> 
+      </form>
+      
+
+      <button mat-raised-button color="primary" class="submit-btn" (click)="loginWithSubmit()" [disabled]="!aFormGroup.valid || emailFormControl.invalid || passwordFormControl.invalid || loadingInappLogin">
+        <app-app-loader [loading]="loadingInappLogin">Submit</app-app-loader>
+     </button>
+
+    </form>
 
     <mat-card-actions>
       <p-divider>

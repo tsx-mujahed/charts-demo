@@ -15,7 +15,6 @@
         </button>
     </div>
     <div *ngIf="!displayResendButton"> <h3> {{counter | formatTime}} </h3> </div>
-    <div *ngIf="displayResendButton" class="resend-details" (click)="onResendOTP()"><h3 style="color: mediumblue;
+    <div *ngIf="displayResendButton" class="resend-details" (click)="onResendOTP()" style="width: max-content;"><h3 style="color: mediumblue;
     font-size: inherit; margin-top: 15px;text-decoration: underline;">Resend OTP</h3></div>
-    <div></div>
 </div>

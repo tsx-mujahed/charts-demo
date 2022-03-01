@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'https://run.mocky.io/v3'
+  apiURL: 'https://intmavensdemowebapp.centralindia.cloudapp.azure.com:3000/api/1.0'
 };

@@ -23,6 +23,7 @@
     "angularx-social-login": "^4.0.1",
     "apexcharts": "^3.33.1",
     "ng-apexcharts": "^1.7.0",
+    "ngx-captcha": "^11.0.0",
     "primeicons": "^5.0.0",
     "primeng": "^13.2.0",
     "rxjs": "~7.5.0",

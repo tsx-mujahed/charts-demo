@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import {
@@ -15,6 +17,14 @@ import { AlertService } from '../shared/snackbar/alert.service';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { LoginService } from './login.service';
 
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,16 +39,25 @@ export class LoginComponent implements OnInit, OnDestroy {
     public dialog2: MatDialog,
     private alertService: AlertService,
     private loginService: LoginService,
-    private authService: AuthService
+    private authService: AuthService,
+    private formBuilder: FormBuilder
   ) { }
 
   value2: string;
   value1: string;
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+  passwordFormControl = new FormControl('', [Validators.required]);
+  public aFormGroup: FormGroup;
+  // recaptcha = new FormControl(['', Validators.required]);
+
+  matcher = new MyErrorStateMatcher();
   loginLoading: boolean = false;
   gmailLoginLoading = false;
   displayLoginCard = true;
   authSubscription: any;
   loadingInappLogin = false;
+  public type: 'image' | 'audio' = 'image';
+  siteKey = '6LcwRtcZAAAAAHCGXrCWMxB6N4Tskv9QV_u3FTXF';
 
   ngOnInit(): void {
     //this.displayLoginCard = true;
@@ -56,26 +75,32 @@ export class LoginComponent implements OnInit, OnDestroy {
         console.log('do nothing in login')
       }
     });
+
+    // captcha
+    this.aFormGroup = this.formBuilder.group({
+      recaptcha: ['', Validators.required]
+    });
   }
   loginWithGoogle(): void {
+    window.localStorage.setItem('isSignUpOpen','false');
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
   loginWithSubmit() {
-    if (!this.value1 || !this.value2) {
+    if (!this.emailFormControl.value || !this.passwordFormControl.value) {
       this.alertService.emitEvent('Enter Username & Password');
       return;
     }
     this.loadingInappLogin = true;
     let user = {
-      email: this.value1,
-      password: this.value2,
+      email: this.emailFormControl.value,
+      password: this.passwordFormControl.value,
       signin_via: 'INAPP'
     }
 
     this.loginService.login(user).subscribe(
       (res: any) => {
         this.loadingInappLogin = false;
-        this.openOTPComp(res.user_name,res.email,'INAPP');
+        this.openOTPComp(res.user_name,res.email,'INAPP',this.passwordFormControl.value);
       },
       error => {
         this.loadingInappLogin = false;
@@ -83,12 +108,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     );
   }
-  openOTPComp(name: any,email: any,signin_via: any) {
+  openOTPComp(name: any,email: any,signin_via: any,password? : string) {
     this.alertService.emitEvent('Login Successful');
     this.displayLoginCard = false;
     const dialogRef = this.dialog.open(PinOtpComponent,
       {
-        width: '445px', height: '410px', data: { name:  name,email: email,signin_via: signin_via}, panelClass: 'my-dialog',
+        width: '445px', height: '410px', data: { name:  name,email: email,signin_via: signin_via, password: password}, panelClass: 'my-dialog',
         backdropClass: 'my-backdrop', hasBackdrop: false
       });
 
@@ -108,11 +133,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     window.localStorage.setItem('isSignUpOpen','true');
   
     dialogRef2.afterClosed().subscribe((result: { signin_via: string; }) => {
-      window.localStorage.setItem('isSignUpOpen','false')
+      window.localStorage.setItem('isSignUpOpen','false');
       console.log(`Dialog result sigbup: ${result}`);
-      if(result.signin_via == 'GMAIL'){
+      if(result && result.signin_via == 'GMAIL'){
         this.openGmailUserOtpPopup(); // sign up using gmail
-      } else if(result.signin_via == 'INAPP'){
+      } else if(result && result.signin_via == 'INAPP'){
         this.openInappUserOtpPopUp(result); // sign up using inapp
       }      
     });
@@ -123,7 +148,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.displayLoginCard = false;
     const dialogRef = this.dialog.open(GmailSignupOtpComponent,
       {
-        width: '420px', height: '480px', data: { username: this.value1 }, panelClass: 'my-dialog',
+        width: '420px', height: '500px', panelClass: 'my-dialog',
         backdropClass: 'my-backdrop',hasBackdrop: false
       });
 
@@ -141,7 +166,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result of gmailpop: ${result}`);
+      this.displayLoginCard = true;
+      console.log(`Dialog result of inappsignpop: ${result}`);
     });
   }
   checkIsUserRegistred(user_data: any){
@@ -158,6 +184,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         
       },
       error => {
+        this.socialAuthService.signOut();
         this.gmailLoginLoading = false;
         this.alertService.emitEvent(error.error.errors[0].msg)
       }

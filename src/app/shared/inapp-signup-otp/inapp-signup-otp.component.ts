@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription, timer } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpchannelService } from 'src/app/core/services/httpchannel.service';
 import { AlertService } from '../snackbar/alert.service';
@@ -23,6 +24,11 @@ export class InappSignupOtpComponent implements OnInit {
     email_otp: any;
     loadingSendOtp: any;
 
+    displayResendButton = false;
+    countDown: Subscription;
+    counter = 10;
+    tick = 1000;
+
   ngOnInit(): void {
     this.username = this.data.username;
   }
@@ -37,7 +43,8 @@ export class InappSignupOtpComponent implements OnInit {
       (data: any) => {
         this.loadingSendOtp = false;
         console.log('Set token jwt');
-        this.authService.saveJWT('xyz-12');
+        this.authService.saveSignUpInfo(this.username,this.data.email,'INAPP');
+        this.authService.saveJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF');
         this.router.navigate(['']);
         this.dialogRef.close();
       },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription, timer } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { HttpchannelService } from 'src/app/core/services/httpchannel.service';
 import { AlertService } from '../snackbar/alert.service';
@@ -42,7 +43,7 @@ export class GmailSignupOtpComponent implements OnInit {
       (data: any) => {
         this.loadingSendOtp = false;
         console.log('Set token jwt');
-        this.authService.saveJWT('xyz-12');
+        this.authService.saveJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF');
         this.router.navigate(['']);
         this.dialogRef.close();
       },

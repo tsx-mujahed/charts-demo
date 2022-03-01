@@ -118,6 +118,9 @@ THE SOFTWARE.
 ng-apexcharts
 MIT
 
+ngx-captcha
+MIT
+
 primeicons
 MIT
 MIT License

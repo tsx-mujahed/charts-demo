@@ -44,15 +44,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   matcher = new MyErrorStateMatcher();
   ngOnInit(): void {
-    // this.authSubscription = this.socialAuthService.authState.subscribe((user) => {
-    //   if(window.localStorage.getItem('isSignUpOpen') == 'true' && user){
-    //     this.authService.saveSignUpInfo(user.name,user.email,'GMAIL');
-    //     this.openGmailUserOtpPopup();
-    //  } else {
-    //    console.log('do nothing in signup')
-    //  }
-      
-    // });
+    this.authSubscription = this.socialAuthService.authState.subscribe((user) => {
+      console.log(user,'in sigb up')
+      if(window.localStorage.getItem('isSignUpOpen') == 'true' && user){
+        this.authService.saveSignUpInfo(user.name,user.email,'GMAIL');
+        this.openGmailUserOtpPopup();
+     } else {
+       console.log('do nothing in signup')
+     }      
+    });
   }
 
   registerUser(){
@@ -91,10 +91,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    if(this.authSubscription){
+      this.authSubscription.unsubscribe();
+    }    
   }
   openGmailUserOtpPopup(){
     setTimeout(() => {    
+      console.log('closing popup sign up')
       this.dialogRef.close({'signin_via': 'GMAIL'});
     }, 0);
     //this.dialogRef.close({'signin_via': 'GMAIL'});

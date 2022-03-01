@@ -4,7 +4,7 @@
     <!-- <img src="/assets/Technostix-logo.png" class="logo"> -->
     <h2 class="logo-text" (click)="goToHome()" >IntMavens</h2>
     <div class="sub-profile-info">
-        <p-avatar (click)="menu.toggle($event)" label="M" icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle" class="avatar-tech"></p-avatar>
+        <p-avatar (click)="menu.toggle($event)" label="{{username[0] | titlecase}}" icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle" class="avatar-tech"></p-avatar>
         <p style="margin: 0;font-size: medium;">Hi {{username}}</p>
     </div>
   </div>
