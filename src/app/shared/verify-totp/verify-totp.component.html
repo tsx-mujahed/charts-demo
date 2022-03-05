@@ -1,0 +1,16 @@
+<div class="main-pin-container">
+    <div class="user-info">
+        <p-avatar label="{{data.name[0] | titlecase}}" icon="pi pi-user" styleClass="p-mr-2" size="xlarge" shape="circle" class="avatar-tech"></p-avatar>
+        <h2 style="margin-top: 10px;">{{data.name | titlecase}} </h2>
+    </div>
+    <div class="pin-input-box">
+        <h3>Please enter the code from Google Authenticator</h3>
+        <div class="p-inputgroup" style="margin-bottom: 15px;">
+            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+            <input type="password" pInputText placeholder="Code"  [(ngModel)]="valueOTP">         
+        </div>
+        <button mat-raised-button color="primary" class="submitotp-btn" (click)="submitOTP()" [disabled]="!valueOTP">
+            <app-app-loader [loading]="loadingSubmitOTP">Continue</app-app-loader>
+        </button>
+    </div>
+</div>

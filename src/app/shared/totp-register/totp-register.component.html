@@ -1,0 +1,33 @@
+
+<div class="close-my-button" (click)="proceedLogin()">
+    <i class="pi pi-times"></i>
+</div>
+
+<h3 style="margin-top: 18px;">Set up authenticator app</h3>
+
+<div class="totp-container">
+    <div class="instruct-box">
+        <ul>
+            <li> In the Google Authenticator app, tap the <strong>+</strong></li>
+            <li> Choose <strong>Scan a QR code</strong></li>
+        </ul>
+    </div>
+    <div class="qr-box">
+        <img src="{{qrUrl}}">
+    </div>
+    <div class="manual-box">
+        <div class="scan-btn">
+            <button mat-stroked-button color="primary" (click)="viewSecret()" *ngIf="!displaySecret">Can't scan it?</button>
+            <button mat-stroked-button color="primary" (click)="viewSecret()" *ngIf="displaySecret">Hide Secret</button>
+        </div>
+        
+        <div class="manual-info" *ngIf="displaySecret">
+            <p>Secret: <strong>{{secret}}</strong> <i class="pi pi-copy icon-cpy" matTooltip="Copy" (click)="copySecret()"></i></p>
+            <p>Email: <strong>{{email}}</strong></p>
+        </div>
+    </div>
+    <div class="login-details">
+        <button mat-stroked-button color="primary" (click)="proceedLogin()">Proceed to Login</button>
+    </div>
+    
+</div>

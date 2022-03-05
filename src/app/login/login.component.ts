@@ -14,6 +14,8 @@ import { GmailSignupOtpComponent } from '../shared/gmail-signup-otp/gmail-signup
 import { InappSignupOtpComponent } from '../shared/inapp-signup-otp/inapp-signup-otp.component';
 import { PinOtpComponent } from '../shared/pin-otp/pin-otp.component';
 import { AlertService } from '../shared/snackbar/alert.service';
+import { TotpRegisterComponent } from '../shared/totp-register/totp-register.component';
+import { VerifyTotpComponent } from '../shared/verify-totp/verify-totp.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { LoginService } from './login.service';
 
@@ -153,7 +155,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.displayLoginCard = true;
+      if(result && result.data){
+        this.OpenRegisterAuthenticateTOTP(result.data);
+      } else {
+        this.displayLoginCard = true;
+      }
+      // this.displayLoginCard = true;
       console.log(`Dialog result of gmailpop: ${result}`);
     });
   }
@@ -177,7 +184,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.gmailLoginLoading = false;
         if(res.status == true){
           this.authService.saveSignUpInfo(user_data.name,user_data.email,'GMAIL'); // remove this if otp page is refreshed or closed
-          this.openOTPComp(user_data.name,user_data.email,'GMAIL');
+          //this.openOTPComp(user_data.name,user_data.email,'GMAIL');
+          this.openVerifyTotp(user_data.name,user_data.email,'GMAIL');
         }else{
           this.alertService.emitEvent('Email is not registered, Please sign up')
         }
@@ -190,6 +198,41 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  /* Add TOTP to Google authenticator on user SIGN-UP */
+  OpenRegisterAuthenticateTOTP(data: any){
+    this.displayLoginCard = false;
+    const dialogRef = this.dialog.open(TotpRegisterComponent,
+      {
+        width: '510px', height: '510px', panelClass: 'my-dialog',
+        backdropClass: 'my-backdrop',hasBackdrop: false, data: data,autoFocus: false
+      });
+
+    dialogRef.afterClosed().subscribe(result => {     
+      this.displayLoginCard = true;
+      console.log(`Dialog result of totp close: ${result}`);
+    });
+  }
+
+  /* Verify TOTP of G-Authenticator */
+  openVerifyTotp(name: any,email: any,signin_via: any,password? : string) {
+    this.alertService.emitEvent('Login Successful');
+    this.displayLoginCard = false;
+    const dialogRef = this.dialog.open(VerifyTotpComponent,
+      {
+        width: '445px', height: '410px', data: { name:  name,email: email,signin_via: signin_via, password: password}, panelClass: 'my-dialog',
+        backdropClass: 'my-backdrop', hasBackdrop: false
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.displayLoginCard = true;
+      console.log(`Dialog result of PIN Totp: ${result}`);
+    });
+    //this.router.navigate(['']);
+  }
+
+
+
   ngOnDestroy(): void {
       this.authSubscription.unsubscribe();
   }

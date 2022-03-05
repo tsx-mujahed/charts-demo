@@ -44,8 +44,8 @@ export class GmailSignupOtpComponent implements OnInit {
         this.loadingSendOtp = false;
         console.log('Set token jwt');
         this.authService.saveJWT('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF');
-        this.router.navigate(['']);
-        this.dialogRef.close();
+        // this.router.navigate(['']);
+        this.dialogRef.close({data: data});
       },
       (error) => {
         this.loadingSendOtp = false;

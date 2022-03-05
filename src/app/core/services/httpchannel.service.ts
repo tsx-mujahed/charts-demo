@@ -19,4 +19,8 @@ export class HttpchannelService {
     //return this.http.post('https://reqres.in/api/users', data);
   }
 
+  public submitTotpCode(data: any, user_id: string,options?: any) {
+    return this.http.post(environment.apiURL + '/users/'+ user_id + '/verify/totp', data); 
+    //return this.http.post('https://reqres.in/api/users', data);
+  }
 }

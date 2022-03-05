@@ -1,0 +1,30 @@
+.qr-box{
+    display: flex;
+    justify-content: center;
+}
+.manual-box{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    flex-direction: column;
+}
+.scan-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.icon-cpy{
+    padding-left: 5px;
+    cursor: pointer;
+}
+.manual-info{
+    margin-top: 10px;
+}
+.login-details{
+    // display: flex;
+    // justify-content: end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+}

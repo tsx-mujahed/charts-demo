@@ -10,6 +10,8 @@ import { GmailSignupOtpComponent } from './gmail-signup-otp/gmail-signup-otp.com
 import { AppLoaderComponent } from './app-loader/app-loader.component';
 import { LoginOtpVerifyComponent } from './login-otp-verify/login-otp-verify.component';
 import { InappSignupOtpComponent } from './inapp-signup-otp/inapp-signup-otp.component';
+import { TotpRegisterComponent } from './totp-register/totp-register.component';
+import { VerifyTotpComponent } from './verify-totp/verify-totp.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { InappSignupOtpComponent } from './inapp-signup-otp/inapp-signup-otp.com
     GmailSignupOtpComponent,
     AppLoaderComponent,
     LoginOtpVerifyComponent,
-    InappSignupOtpComponent,FormatTimePipe
+    InappSignupOtpComponent,FormatTimePipe, TotpRegisterComponent, VerifyTotpComponent
   ],
   imports: [
     CommonModule,
